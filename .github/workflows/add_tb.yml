@@ -1,32 +1,26 @@
-# This is a basic workflow to help you get started with Actions
+# Example 1 - Publish a specific Tableau workbook to Tableau Online/Server
+# See README for explanation & walkthrough
 
-name: CI
-
-# Controls when the workflow will run
+name: deploy-tableau-workbook
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  publish-to-tableau-server:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2.1.0
+      
+      # Download and unpackage tabcmd
+      - run: sudo wget -O tableau-tabcmd.deb "${{ secrets.TABCMD_URL }}"
+      - run: sudo dpkg-deb -x ./tableau-tabcmd.deb ./tabcmdpackage/
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      # Accept Tableau EULA for tabcmd
+      - run: ./tabcmdpackage/opt/tableau/tabcmd/bin/tabcmd --accepteula
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      # Log in to Tableau Server with tabcmd
+      - run: ./tabcmdpackage/opt/tableau/tabcmd/bin/tabcmd login -s "${{ secrets.TABLEAU_HOST }}" -u "${{ secrets.TABLEAU_USERNAME }}" -p "${{ secrets.TABLEAU_PASSWORD }}"
+
+      # Publish workbook
+      - run: |
+            ./tabcmdpackage/opt/tableau/tabcmd/bin/tabcmd publish "my-tableau-workbook.twbx" -n "My Tableau Workbook" --project "My Project" --overwrite
