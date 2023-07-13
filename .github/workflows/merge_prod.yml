@@ -24,7 +24,7 @@ jobs:
       - run: ./tabcmdpackage/opt/tableau/tabcmd/bin/tabcmd --accepteula
 
       # Log in to Tableau Server with tabcmd
-      - run: ./tabcmdpackage/opt/tableau/tabcmd/bin/tabcmd login -s "https://tableau-test.kingpower.com/#/home" -u "tbl-test-user1" -p "rJ8ck72BcWgJX8d9"  --no-certcheck
+      - run: ./tabcmdpackage/opt/tableau/tabcmd/bin/tabcmd login -s "${{ secrets.TABLEAU_URL }}" -u "${{ secrets.TABLEAU_USERNAME }}" -p "${{ secrets.TABLEAU_PASSWORD }}"  --no-certcheck
 
       # Publish workbook
      # - run: |
