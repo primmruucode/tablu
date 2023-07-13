@@ -28,4 +28,4 @@ jobs:
 
       # Publish workbook
       - run: |
-            ./tabcmdpackage/opt/tableau/tabcmd/bin/tabcmd publish "my-tableau-workbook.twbx" -n "My Tableau Workbook" --project "mopo/mopo-2-2" --overwrite
+            ./tabcmdpackage/opt/tableau/tabcmd/bin/tabcmd publish "my-tableau-workbook.twbx" -n "My Tableau Workbook" --project "mopo/mopo-2-2" --overwrite --no-certcheck
