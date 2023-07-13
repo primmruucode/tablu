@@ -4,6 +4,11 @@
 name: deploy-to-prod
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '.github/workflows/**'
 
 jobs:
   publish-to-tableau-server-prod:
