@@ -27,5 +27,5 @@ jobs:
       - run: ./tabcmdpackage/opt/tableau/tabcmd/bin/tabcmd login -s "https://prod-apsoutheast-a.online.tableau.com/#/site/bangkruk/home" -u "kourim2570@hotmail.com" -p "${{ secrets.TABLEAU_PASSWORD }}" --no-certcheck
 
       # Publish workbook
-     # - run: |
-          #  ./tabcmdpackage/opt/tableau/tabcmd/bin/tabcmd publish "my-tableau-workbook.twbx" -n "My Tableau Workbook" --project "My Project" --overwrite
+      - run: |
+            ./tabcmdpackage/opt/tableau/tabcmd/bin/tabcmd publish "my-tableau-workbook.twbx" -n "My Tableau Workbook" --project "mopo/mopo-2-2" --overwrite
