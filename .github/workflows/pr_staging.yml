@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v2.1.0
       
       # Download and unpackage tabcmd
-      - run: sudo wget -O tableau-tabcmd.deb "https://downloads.tableau.com/esdalt/2018.3.3/tableau-tabcmd-2018-3-3_all.deb"
+      - run: sudo wget -O tableau-tabcmd.deb "https://www.tableau.com/support/releases/server/2019.1.1"
       - run: sudo dpkg-deb -x ./tableau-tabcmd.deb ./tabcmdpackage/
 
       # Accept Tableau EULA for tabcmd
