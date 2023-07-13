@@ -1,0 +1,27 @@
+# Example 1 - Publish a specific Tableau workbook to Tableau Online/Server
+# See README for explanation & walkthrough
+
+name: deploy-on-pr-staging
+on:
+  workflow_dispatch:
+  #PR:
+
+jobs:
+  publish-to-staging-on-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.1.0
+      
+      # Download and unpackage tabcmd
+      - run: sudo wget -O tableau-tabcmd.deb "https://downloads.tableau.com/esdalt/2018.3.3/tableau-tabcmd-2018-3-3_all.deb"
+      - run: sudo dpkg-deb -x ./tableau-tabcmd.deb ./tabcmdpackage/
+
+      # Accept Tableau EULA for tabcmd
+      - run: ./tabcmdpackage/opt/tableau/tabcmd/bin/tabcmd --accepteula
+
+      # Log in to Tableau Server with tabcmd
+      - run: ./tabcmdpackage/opt/tableau/tabcmd/bin/tabcmd login -s "https://tableau-test.kingpower.com/#/home" -u "tbl-test-user1" -p "rJ8ck72BcWgJX8d9"
+
+      # Publish workbook
+     # - run: |
+          #  ./tabcmdpackage/opt/tableau/tabcmd/bin/tabcmd publish "my-tableau-workbook.twbx" -n "My Tableau Workbook" --project "My Project" --overwrite
