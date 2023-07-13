@@ -1,12 +1,12 @@
 # Example 1 - Publish a specific Tableau workbook to Tableau Online/Server
 # See README for explanation & walkthrough
 
-name: deploy-tableau-workbook
+name: deploy-to-prod
 on:
   workflow_dispatch:
 
 jobs:
-  publish-to-tableau-server:
+  publish-to-tableau-server-prod:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.1.0
