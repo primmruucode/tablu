@@ -4,7 +4,11 @@
 name: deploy-on-pr-staging
 on:
   workflow_dispatch:
-  #PR:
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - '.github/workflows/**'
 
 jobs:
   publish-to-staging-on-pr:
