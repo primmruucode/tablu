@@ -28,4 +28,4 @@ jobs:
 
       # Publish workbook
       - run: |
-            ./tabcmdpackage/opt/tableau/tabcmd/bin/tabcmd publish "Tableau_files/Selfservice_Use This File.twb" -n "My Tableau data" --parent-project-path "winno/mopo" -r "mujo" --overwrite --no-certcheck
+            ./tabcmdpackage/opt/tableau/tabcmd/bin/tabcmd publish "Selfservice_Use This File.twb" -n "My Tableau data" --parent-project-path "winno/mopo" -r "mujo" --overwrite --no-certcheck
