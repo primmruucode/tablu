@@ -28,4 +28,4 @@ jobs:
 
       # Publish workbook
       - run: |
-            ./tabcmdpackage/opt/tableau/tabcmd/bin/tabcmd publish "Tableau_files/Daily Sales Dashboard 2023-06-27.twbx" -n "My Tableau Workbook" --parent-project-path "winno/mopo" -r "mujo" --overwrite --no-certcheck
+            ./tabcmdpackage/opt/tableau/tabcmd/bin/tabcmd publish "test.twbx" -n "My Tableau Workbook" --parent-project-path "winno/mopo" -r "mujo" --overwrite --no-certcheck
